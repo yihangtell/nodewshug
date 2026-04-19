@@ -3,369 +3,637 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>BRUTAL Studio - Digital Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Franklin:wght@300;400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #ff3d00;
+            --gray: #1a1a1a;
+            --light-gray: #f5f5f5;
+            --text: #000000;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--text);
+            background-color: var(--secondary);
+            color: var(--primary);
+            font-family: 'Libre Franklin', sans-serif;
+            font-weight: 300;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* Header */
         header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
+            left: 0;
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 1.5rem 3rem;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 4px solid var(--accent);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            position: relative;
+            transform: skewX(-5deg);
         }
 
-        .logo i {
-            font-size: 2rem;
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
+            gap: 2rem;
+            align-items: center;
         }
 
         nav ul li a {
-            color: var(--white);
+            color: var(--secondary);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        nav ul li a:hover::before {
+            transform: scaleX(1);
         }
 
         nav ul li a:hover {
             color: var(--accent);
         }
 
-        nav ul li a::after {
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background-color: var(--primary);
+            color: var(--secondary);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 5rem;
+        }
+
+        .hero::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
             background-color: var(--accent);
-            transition: width 0.3s ease;
+            opacity: 0.8;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: pulse 4s ease-in-out infinite;
         }
 
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 0.6; }
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            padding-right: 2rem;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .hero h1 span {
+            display: block;
+            transform: skewX(-5deg);
+        }
+
+        .hero h1 .accent-line {
+            color: var(--accent);
+            font-size: 6rem;
+            position: relative;
+        }
+
+        .hero h1 .accent-line::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--secondary);
+        }
+
+        .hero-text {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            line-height: 1.4;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInRight 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-box {
+            width: 500px;
+            height: 500px;
+            background-color: var(--accent);
+            position: relative;
+            transform: rotate(15deg);
+            box-shadow: -30px 30px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-box::before {
+            content: '01';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 15rem;
+            color: rgba(0, 0, 0, 0.2);
+            line-height: 1;
+        }
+
+        .hero-box::after {
+            content: 'DESIGN';
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            letter-spacing: 0.1em;
+            transform: rotate(-15deg);
         }
 
         .btn {
             display: inline-block;
+            padding: 1rem 3rem;
             background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
+            color: var(--secondary);
             text-decoration: none;
-            font-weight: 600;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            border: 4px solid var(--accent);
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 10px 10px 0 var(--secondary);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary);
+            transition: all 0.3s ease;
+            z-index: -1;
         }
 
         .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
+            transform: translateX(10px) translateY(10px);
+            box-shadow: 0px 0px 0 var(--secondary);
         }
 
-        .section-title h2::after {
+        .btn:hover::before {
+            left: 0;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 5rem;
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .about::before {
+            content: 'ABOUT';
+            position: absolute;
+            top: 4rem;
+            right: 5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 15rem;
+            color: rgba(255, 61, 0, 0.05);
+            letter-spacing: 0.1em;
+            z-index: 0;
+        }
+
+        .section-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--accent);
+            display: inline-block;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-number::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
+            bottom: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
+            height: 5px;
+            background-color: var(--accent);
         }
 
-        .about-img:hover img {
-            transform: scale(1.05);
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 5rem;
+            align-items: start;
+            position: relative;
+            z-index: 1;
         }
 
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        .about-text h2::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            font-size: 8rem;
+            color: var(--accent);
+            opacity: 0.3;
         }
 
         .about-text p {
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
         }
 
-        .stats {
+        .about-stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
         }
 
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+        .stat {
+            position: relative;
+            padding: 2rem;
+            border: 3px solid var(--primary);
+            background-color: var(--light-gray);
+            transform: skewX(-5deg);
+            transition: all 0.3s ease;
         }
 
-        .stat-item:hover {
-            transform: translateY(-10px);
+        .stat:hover {
+            transform: skewX(0deg) translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 15px 15px 0 rgba(255, 61, 0, 0.2);
         }
 
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            color: var(--accent);
+            line-height: 1;
             margin-bottom: 1rem;
         }
 
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
+        .stat-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            color: var(--primary);
         }
 
-        .stat-item p {
-            color: var(--text);
+        .about-visual {
+            position: relative;
+            height: 600px;
         }
 
-        .initiatives {
-            background-color: var(--white);
+        .about-box {
+            width: 100%;
+            height: 500px;
+            background-color: var(--primary);
+            position: absolute;
+            top: 50px;
+            left: 0;
+            box-shadow: 20px 20px 0 var(--accent);
         }
 
-        .initiatives-grid {
+        .about-box::before {
+            content: '02';
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 12rem;
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 5rem;
+            background-color: var(--gray);
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .services::before {
+            content: 'SERVICES';
+            position: absolute;
+            top: 4rem;
+            left: 5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 15rem;
+            color: rgba(255, 61, 0, 0.05);
+            letter-spacing: 0.1em;
+        }
+
+        .services-header {
+            text-align: right;
+            margin-bottom: 5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
+        .service-card {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 3rem;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            min-height: 400px;
         }
 
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            height: 8px;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
-        .initiative-content {
-            padding: 1.5rem;
+        .service-card:hover {
+            transform: translateY(-15px) rotate(-2deg);
+            box-shadow: 20px 20px 0 rgba(255, 61, 0, 0.3);
         }
 
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
+        .service-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            color: rgba(255, 61, 0, 0.1);
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            line-height: 1;
         }
 
-        .initiative-content p {
+        .service-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 0.1em;
             margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
+        .service-description {
+            font-weight: 300;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CTA Section */
         .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
+            padding: 10rem 5rem;
+            background-color: var(--accent);
+            color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: 'WORK';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 25rem;
+            color: rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.1em;
+        }
+
+        .cta::after {
+            content: 'WITH US';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20rem;
+            color: rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.1em;
+        }
+
+        .cta-content {
             text-align: center;
-            padding: 5rem 0;
+            position: relative;
+            z-index: 1;
         }
 
         .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 7rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            transform: skewX(-5deg);
         }
 
         .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
+            background-color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .cta .btn::before {
+            background-color: var(--secondary);
         }
 
         .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
+            color: var(--primary);
+            box-shadow: 0px 0px 0 rgba(0, 0, 0, 0.3);
         }
 
+        /* Footer */
         footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 5rem 5rem 2rem;
+            position: relative;
         }
 
-        .footer-content {
+        .footer-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            transform: skewX(-5deg);
+        }
+
+        .footer-brand p {
+            font-weight: 300;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
         }
 
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+        .footer-section h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
             position: relative;
-            padding-bottom: 10px;
         }
 
-        .footer-column h3::after {
+        .footer-section h4::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             left: 0;
             width: 40px;
-            height: 2px;
+            height: 5px;
             background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
         }
 
         .footer-links {
@@ -373,350 +641,498 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
 
         .footer-links li a {
-            color: var(--light);
+            color: var(--secondary);
             text-decoration: none;
+            font-weight: 300;
             transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .footer-links li a:hover {
             color: var(--accent);
-            padding-left: 5px;
+            transform: translateX(10px);
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
+        .footer-contact p {
+            font-weight: 300;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 30px;
         }
 
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
+        .footer-contact p::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 3rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            font-weight: 300;
         }
 
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+        .copyright span {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 6rem;
+            }
+
+            .hero h1 .accent-line {
+                font-size: 5rem;
+            }
+
+            .hero-box {
+                width: 400px;
+                height: 400px;
+            }
+
+            .hero-box::before {
+                font-size: 12rem;
+            }
+
+            .about::before {
+                font-size: 10rem;
+            }
+
+            .services::before {
+                font-size: 10rem;
+            }
         }
 
         @media (max-width: 992px) {
-            .about-content {
+            header {
+                padding: 1rem 2rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 8rem 3rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                order: 2;
+            }
+
+            .hero-visual {
+                order: 1;
+                height: 400px;
+                margin-bottom: 3rem;
+            }
+
+            .hero-box {
+                width: 300px;
+                height: 300px;
+            }
+
+            .hero-box::before {
+                font-size: 10rem;
+            }
+
+            .hero h1 {
+                font-size: 5rem;
+            }
+
+            .about-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .initiatives-grid {
+
+            .about-visual {
+                height: 400px;
+                margin-bottom: 3rem;
+            }
+
+            .about::before {
+                font-size: 8rem;
+                right: 2rem;
+            }
+
+            .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
             nav ul {
-                display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
                 background-color: var(--primary);
                 flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 2rem;
+                gap: 1.5rem;
+                display: none;
+                border-top: 2px solid var(--accent);
             }
-            
+
             nav ul.active {
                 display: flex;
             }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
+
+            .menu-toggle {
                 display: block;
             }
-            
-            .initiatives-grid {
+
+            .hero {
+                padding: 6rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .hero h1 .accent-line {
+                font-size: 3rem;
+            }
+
+            .hero-text {
+                font-size: 1.3rem;
+            }
+
+            .hero-box {
+                width: 250px;
+                height: 250px;
+            }
+
+            .hero-box::before {
+                font-size: 8rem;
+            }
+
+            .hero-box::after {
+                font-size: 1.5rem;
+            }
+
+            .about {
+                padding: 5rem 2rem;
+            }
+
+            .about::before {
+                font-size: 6rem;
+                top: 2rem;
+                right: 1rem;
+            }
+
+            .about-text h2 {
+                font-size: 3rem;
+            }
+
+            .about-stats {
                 grid-template-columns: 1fr;
             }
-            
-            .footer-content {
+
+            .services {
+                padding: 5rem 2rem;
+            }
+
+            .services::before {
+                font-size: 6rem;
+                left: 1rem;
+            }
+
+            .services-header h2 {
+                font-size: 3rem;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .stats {
+
+            .cta {
+                padding: 6rem 2rem;
+            }
+
+            .cta::before {
+                font-size: 15rem;
+            }
+
+            .cta::after {
+                font-size: 12rem;
+            }
+
+            .cta h2 {
+                font-size: 4rem;
+            }
+
+            .cta p {
+                font-size: 1.3rem;
+            }
+
+            footer {
+                padding: 3rem 2rem 1rem;
+            }
+
+            .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
 
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="logo">BRUTAL</div>
+        <nav>
+            <div class="menu-toggle">☰</div>
+            <ul>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#cta">CONTACT</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+        <div class="hero-content">
+            <div class="section-number">01</div>
+            <h1>
+                <span>WE CREATE</span>
+                <span class="accent-line">DIGITAL EXPERIENCES</span>
+            </h1>
+            <p class="hero-text">Bold design meets strategic thinking. We transform brands through uncompromising creativity and digital innovation.</p>
+            <a href="#cta" class="btn">START PROJECT</a>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-box"></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-text animate-on-scroll">
+                <div class="section-number">02</div>
+                <h2>We don't follow trends, we create them</h2>
+                <p>BRUTAL Studio is a digital creative agency that challenges conventional design thinking. Founded in 2018, we've built a reputation for delivering bold, memorable brand experiences that stand out in crowded markets.</p>
+                <p>Our approach combines strategic insight with visual impact. We believe great design should be both functional and unforgettable—making every pixel count in the pursuit of distinction.</p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">127</div>
+                        <div class="stat-label">PROJECTS</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">45</div>
+                        <div class="stat-label">CLIENTS</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">AWARDS</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">8Y</div>
+                        <div class="stat-label">EXPERIENCE</div>
+                    </div>
+                </div>
             </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
+            <div class="about-visual animate-on-scroll">
+                <div class="about-box"></div>
             </div>
         </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-header animate-on-scroll">
+            <div class="section-number">03</div>
+            <h2>What We Do</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-number">01</div>
+                <h3 class="service-title">BRAND IDENTITY</h3>
+                <p class="service-description">Complete brand systems from logo design to comprehensive visual guidelines. We create distinctive identities that resonate and endure.</p>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-number">02</div>
+                <h3 class="service-title">WEB DESIGN</h3>
+                <p class="service-description">Pixel-perfect websites with bold aesthetics and seamless functionality. Every interaction designed to engage and convert.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-number">03</div>
+                <h3 class="service-title">DIGITAL PRODUCTS</h3>
+                <p class="service-description">App interfaces, digital platforms, and interactive experiences. We transform complex ideas into intuitive, impactful products.</p>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+    <section class="cta" id="cta">
+        <div class="cta-content animate-on-scroll">
+            <h2>LET'S CREATE<br>SOMETHING BOLD</h2>
+            <p>Ready to break the mold and stand out in your market? We're here to transform your vision into a digital experience that demands attention.</p>
+            <a href="#" class="btn">GET IN TOUCH</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>BRUTAL</h3>
+                <p>Creating bold digital experiences that challenge convention and capture attention since 2018.</p>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+            <div class="footer-section">
+                <h4>NAVIGATION</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#cta">Contact</a></li>
+                </ul>
             </div>
+            <div class="footer-section">
+                <h4>SERVICES</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Brand Identity</a></li>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">Digital Products</a></li>
+                    <li><a href="#">Motion Design</a></li>
+                </ul>
+            </div>
+            <div class="footer-section footer-contact">
+                <h4>CONTACT</h4>
+                <p>Studio 42, Design Quarter</p>
+                <p>New York, NY 10013</p>
+                <p>hello@brutalstudio.com</p>
+                <p>+1 (212) 555-0198</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 <span>BRUTAL Studio</span>. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('nav ul').classList.toggle('active');
+            this.textContent = this.textContent === '☰' ? '✕' : '☰';
         });
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
+        // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
+                if (targetId === '#') return;
+
                 const targetElement = document.querySelector(targetId);
-                if(targetElement) {
+                if (targetElement) {
+                    const offsetTop = targetElement.offsetTop - 80;
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: offsetTop,
                         behavior: 'smooth'
                     });
-                    
+
+                    // Close mobile menu
                     document.querySelector('nav ul').classList.remove('active');
+                    document.querySelector('.menu-toggle').textContent = '☰';
                 }
+            });
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Add stagger effect for grid items
+                    if (entry.target.parentElement.classList.contains('services-grid')) {
+                        const cards = entry.target.parentElement.querySelectorAll('.service-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.classList.add('visible');
+                            }, index * 150);
+                        });
+                    }
+                    if (entry.target.parentElement.classList.contains('about-stats')) {
+                        const stats = entry.target.parentElement.querySelectorAll('.stat');
+                        stats.forEach((stat, index) => {
+                            setTimeout(() => {
+                                stat.classList.add('visible');
+                            }, index * 100);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animate-on-scroll elements
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero background glow
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero::before');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover sound effect (optional enhancement)
+        const buttons = document.querySelectorAll('.btn, .service-card, .stat');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                // Visual feedback only - no sound in static page
+                button.style.transition = 'all 0.15s ease';
             });
         });
     </script>
 </body>
-
 </html>
